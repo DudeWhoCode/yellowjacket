@@ -8,9 +8,9 @@
 <body>
 
 <div class="box">
-    <form>
-        <input class="wasp" type="text" placeholder="wasps" name="wsp" required>
-        <input class="swarm" type="text" placeholder="swarm" name="swm" required>
+    <form action="http://localhost:8000/attack" method="post">
+        <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
+        <input class="swarm" type="text" placeholder="swarm" name="swarms" required>
         <button class="btn" type="submit">attack</button>
     </form>
 
