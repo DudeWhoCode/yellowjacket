@@ -29,15 +29,15 @@ func main() {
 		}
 		fmt.Println("Blocking receiver")
 	}()
-	http.HandleFunc("/attack", AttackHander) // set router
-	err := http.ListenAndServe(":8000", nil) // set listen port
+	http.HandleFunc("/attack", AttackHandler) // set router
+	err := http.ListenAndServe(":8000", nil)  // set listen port
 	if err != nil {
 		fmt.Println("ListenAndServe: ", err)
 	}
 	fmt.Println("Listening on port 8000: ")
 }
 
-func AttackHander(w http.ResponseWriter, r *http.Request) {
+func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	//decoder := json.NewDecoder(r.Body)
 	//fmt.Println("Got post form : ", r.Body)
 	//var a attack
