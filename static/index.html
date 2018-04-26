@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <title>YellowJacket</title>
     <link rel="stylesheet" href="site.css">
+    <script type="text/javascript" src="main.js"></script>
 </head>
+<header>
+        <a id="new-test" href="#" onclick="swarm()">Create new test</a>
+        <button class="btn-stop" type="submit">Stop</button>
+</header>
 <body>
 
-<div class="box">
+<div id="start-swarm">
     <form action="http://localhost:8000/attack" method="post">
+        <span id='close'>x</span>
         <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
         <input class="swarm" type="text" placeholder="swarm" name="swarms" required>
-        <button class="btn" type="submit">attack</button>
+        <button class="btn" type="submit">Attack</button>
     </form>
 
 </div>
