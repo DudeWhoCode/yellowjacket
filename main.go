@@ -39,11 +39,11 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	//}
 
 	r.ParseForm()
-	swarms, _ := strconv.Atoi(r.FormValue("swarms"))
+	swarmRate := 5 //strconv.Atoi(r.FormValue("swarm"))
 	wasps, _ := strconv.Atoi(r.FormValue("wasps"))
 	defer r.Body.Close()
-	fmt.Println("wasp count: ", wasps, swarms)
-	go createSwarm(swarms, wasps)
+	fmt.Println("wasp count: ", wasps, swarmRate)
+	go createSwarm(swarmRate, wasps)
 }
 
 
