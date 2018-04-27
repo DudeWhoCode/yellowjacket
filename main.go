@@ -46,11 +46,24 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	go createSwarm(swarms, wasps)
 }
 
-func createSwarm(swarms int, wasps int) {
-	fmt.Println("Into CreateSwarm")
+
+
+func createSwarm(swarmRate int, wasps int) {
+	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", wasps, swarmRate)
+	remainingWasps := wasps
 	for i := 0; i < wasps; i++ {
 		fmt.Println("Wasping")
-		AttackGet(swarms, "http://www.google.com")
+		for j:=0; j<swarmRate; j++ {
+			println("Into j")
+			go Attack("http://www.google.com")
+			remainingWasps--
+		}
+		if remainingWasps == 0 {
+			fmt.Printf("Created %d wasps \n", wasps)
+			break
+		}
+		fmt.Println("Before time.sleep")
+		time.Sleep(time.Second)
 	}
 }
 
