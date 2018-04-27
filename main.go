@@ -23,17 +23,8 @@ func main() {
 		ResponseHeader *http.Response
 		ResponseTime   string
 	})
-	go func() {
-		for resp := range responses {
-			fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
-		}
-		fmt.Println("Blocking receiver")
-	}()
-	http.HandleFunc("/attack", AttackHandler) // set router
-	err := http.ListenAndServe(":8000", nil)  // set listen port
-	if err != nil {
-		fmt.Println("ListenAndServe: ", err)
-	}
+	go collectLogs()
+	startServer("8000")
 	fmt.Println("Listening on port 8000: ")
 }
 
@@ -79,5 +70,22 @@ func AttackGet(swarm int, url string) {
 			elapsed.String(),
 		}
 		responses <- responseStruct
+	}
+}
+
+func collectLogs() {
+	for resp := range responses {
+		continue
+		fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
+	}
+	fmt.Println("Blocking receiver")
+}
+
+func startServer(port string) {
+	http.HandleFunc("/attack", AttackHandler) // set router
+	port = ":" + port
+	err := http.ListenAndServe(port, nil)  // set listen port
+	if err != nil {
+		fmt.Println("ListenAndServe: ", err)
 	}
 }
