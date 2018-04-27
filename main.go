@@ -54,9 +54,9 @@ func createSwarm(swarms int, wasps int) {
 	}
 }
 
-func AttackGet(swarm int, url string) {
-	for i := 0; i < swarm; i++ {
-		fmt.Println("Attacking : ", swarm, url)
+func Attack(url string) {
+
+	for ;; {
 		start := time.Now()
 		response, _ := http.Get(url)
 		elapsed := time.Since(start)
