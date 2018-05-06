@@ -7,16 +7,16 @@
     <script type="text/javascript" src="main.js"></script>
 </head>
 <header>
-        <a id="new-test" href="#" onclick="swarm()">Create new test</a>
+        <a id="new-test" href="#" onclick="toggle_box()">Create new test</a>
         <button class="btn-stop" type="submit">Stop</button>
 </header>
 <body>
 
 <div id="start-swarm">
     <!--<form action="http://localhost:8000/attack" method="post">-->
-        <span id='close'>x</span>
+        <button id="close" onclick="close_btn()">x</button>
         <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
-        <input class="swarm" type="text" placeholder="swarm" name="swarms" required>
+        <input class="swarm" type="text" placeholder="hatch rate" name="swarms" required>
         <button class="btn" type="submit" onclick="attack()">Attack</button>
     <!--</form>-->
 

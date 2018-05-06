@@ -5,6 +5,18 @@ function swarm() {
     start_swarm.style.display = 'block';
 }
 
+function toggle_box() {
+    if(start_swarm.style.display === 'block') {
+        console.log('Setting display to none');
+        start_swarm.style.display = 'none'
+    }
+    else{
+        start_swarm.style.display = 'block';
+    }
+
+}
+
+
 window.onload = function () {
    start_swarm = document.getElementById("start-swarm");
    swarm_button = document.getElementById('new-test');
