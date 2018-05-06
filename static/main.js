@@ -1,8 +1,9 @@
 var start_swarm;
 var swarm_button;
 
-function swarm() {
-    start_swarm.style.display = 'block';
+function close_btn() {
+    console.log('close call');
+    start_swarm.style.display = 'none'
 }
 
 function toggle_box() {
