@@ -50,25 +50,25 @@ body{
 }
 
 .wasp{
-    border-radius:4px;
     background:#ecf0f1;
     border: #ccc 1px solid;
+    border-radius:4px;
     padding: 8px;
     width:250px;
     font-size:1em;
     margin-top: 40px;
+    margin-left: 14px;   // Replace this hack
 }
 
 .swarm{
     background:#ecf0f1;
     border: #ccc 1px solid;
+    border-radius:4px;
     padding: 8px;
     width:250px;
-    color:#AAAAAA;
+    font-size:1em;
     margin-top:20px;
     margin-bottom: 20px;
-    font-size:1em;
-    border-radius:4px;
 }
 
 footer {
@@ -101,7 +101,7 @@ header {
 
 #close {
     float:right;
-    /*display:inline-block;*/
+    display:inline-block;
     padding:2px 5px;
     background:#ccc;
 }
