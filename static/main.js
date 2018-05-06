@@ -25,8 +25,8 @@ window.onload = function () {
 
 function attack() {
     var xhttp = new XMLHttpRequest();
-    var waspsCount = document.getElementsByClassName('wasp');
-    var hatchRate = document.getElementsByClassName('swarm');
+    var waspsCount = document.getElementsByClassName('wasp')[0].value;
+    var hatchRate = document.getElementsByClassName('swarm')[0].value;
     var payload = {};
     payload.wasps = waspsCount;
     payload.swarms = hatchRate;
