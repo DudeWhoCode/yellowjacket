@@ -10,15 +10,17 @@
         <a id="new-test" href="#" onclick="toggle_box()">Create new test</a>
         <button class="btn-stop" type="submit">Stop</button>
 </header>
-<body>
+<div>
 
 <div id="start-swarm">
     <!--<form action="http://localhost:8000/attack" method="post">-->
-        <button id="close" onclick="close_btn()">x</button>
-        <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
-        <input class="swarm" type="text" placeholder="hatch rate" name="swarms" required>
-        <button class="btn" type="submit" onclick="attack()">Attack</button>
-    <!--</form>-->
+    <div style="text-align: right">
+    <button id="close" onclick="close_btn()">x</button>
+    </div>
+    <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
+    <input class="swarm" type="text" placeholder="hatch rate" name="swarms" required>
+    <button class="btn" type="submit" onclick="attack()">Attack</button>
+<!--</form>-->
 
 </div>
 

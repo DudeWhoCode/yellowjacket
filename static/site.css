@@ -56,8 +56,10 @@ body{
     padding: 8px;
     width:250px;
     font-size:1em;
-    margin-top: 40px;
-    margin-left: 14px;   // Replace this hack
+    margin:40px auto auto auto;
+    /*margin-top: 40px;*/
+    display: block;
+    /*margin-left: 14px;   // Replace this hack*/
 }
 
 .swarm{
@@ -67,8 +69,10 @@ body{
     padding: 8px;
     width:250px;
     font-size:1em;
-    margin-top:20px;
-    margin-bottom: 20px;
+    margin:20px auto;
+    /*margin-bottom: 20px;*/
+    /*margin: auto;*/
+    display: block;
 }
 
 footer {
@@ -100,7 +104,6 @@ header {
 }
 
 #close {
-    float:right;
     display:inline-block;
     padding:2px 5px;
     background:#ccc;
