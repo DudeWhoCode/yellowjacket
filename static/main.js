@@ -24,21 +24,12 @@ window.onload = function () {
 };
 
 function attack() {
-    var xhttp = new XMLHttpRequest();
     var waspsCount = document.getElementsByClassName('wasp')[0].value;
     var hatchRate = document.getElementsByClassName('swarm')[0].value;
     var payload = {};
     payload.wasps = Number(waspsCount);
     payload.swarms = Number(hatchRate);
-    console.log(
-        'Payload: ', payload
-    );
-    xhttp.open("POST", "http://localhost:8000/attack", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(JSON.stringify(payload));
-    console.log('Before toggling');
-    toggle_box();
-    console.log('After toggling')
-    // var response = JSON.parse(xhttp.responseText);
+    let data = JSON.stringify(payload);
+    fetch('http://localhost:8001/api/v1/attack', {method: 'POST', body:data});
 }
 
