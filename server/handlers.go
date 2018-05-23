@@ -31,7 +31,9 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	swarmRate := a.Swarms //strconv.Atoi(r.FormValue("toggle_box"))
 	wasps := a.Wasps
 	fmt.Println("wasp count: ", wasps, swarmRate)
-	go backend.CreateSwarm(swarmRate, wasps)
+	pipe := backend.Initialize()
+	go backend.CollectLogs(pipe)
+	go backend.CreateSwarm(swarmRate, wasps, pipe)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
