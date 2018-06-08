@@ -1,16 +1,6 @@
-#start-swarm{
-    background:white;
-    width:300px;
-    border-radius:6px;
-    margin: 0 auto 0 auto;
-    padding:0px 0px 70px 0px;
-    border: #2980b9 4px solid;
-    display: none;
-}
-
 body{
     font-family: 'Open Sans', sans-serif;
-    background:black;
+    background: #494949;
     width:100%;
     text-align:center;
     margin: 0px 0 20px 0;
@@ -77,19 +67,32 @@ body{
 
 footer {
     margin-top: 25%;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 header {
-    width: 100%;
     padding: 20px 20px;
     margin-top: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     height: 60px;
     background: yellow;
+    /* width: 100%; */
+}
+
+#navbar {
+    /* width: 100%; */
+    padding: 20px 20px;
+    height: 10px;
+    background: #323232;
 }
 
 #new-test {
-    padding: 15px 5px 15px 5px;
+    padding: 15px 80px 15px 5px;
     color:blue;
     border-radius:4px;
     float: right;
@@ -107,4 +110,66 @@ header {
     display:inline-block;
     padding:2px 5px;
     background:#ccc;
+}
+
+/* #stats-table {
+    width: 100%;
+    margin: 50px 0px 0px 0px;
+    border: 2px solid white;
+}
+
+#stats-headers {
+    display:inline-block;
+    width: 100%;
+    color: white;
+    border: 1px solid #414040;
+    padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+}
+
+#stats-header {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+} */
+
+/* table, th, td {
+    border: 1px solid white;
+ } */
+
+ th, td {
+    height: 30px;
+    text-align: left;
+    vertical-align: bottom;
+    color: white;
+    padding: 5px;
+ }
+ th {
+    background-color: #363636;
+ }
+ tr:nth-child(even) {background-color: #363636;}
+ tr:hover {background-color: #5c5c5c;}
+ table {
+    border-collapse: collapse;
+    width: 1200px;
+    margin: 50px 50px 50px 50px;
+    border: #363636 2px solid;
+ }
+
+ #start-swarm{
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* min-height: 100vh; */
+    background:white;
+    width:300px;
+    border-radius:6px;
+    /*margin: 10% 20% 50px 500px;*/
+    padding:0px 0px 70px 0px;
+    border: #2980b9 4px solid;
+    position: absolute;
+    display: none; 
 }

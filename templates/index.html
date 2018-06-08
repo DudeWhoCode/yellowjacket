@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YellowJacket</title>
+    <link rel="stylesheet" type="text/css" href="templates/site.css">
+    <script type="application/javascript" src="templates/main.js"></script>
+</head>
+<header>
+        <a id="new-test" href="#" onclick="toggle_box()">Create new test</a>
+        <button class="btn-stop" type="submit">Stop</button>
+</header>
+<div>
+
+<div id="start-swarm">
+    <div style="text-align: right">
+    <button id="close" onclick="close_btn()">x</button>
+    </div>
+    <input class="wasp" type="text" placeholder="wasps" name="wasps" required>
+    <input class="swarm" type="text" placeholder="hatch rate" name="swarms" required>
+    <button class="btn" type="submit" onclick="attack()">Attack</button>
+
+</div>
+
+<div id="navbar">
+    
+</div>
+
+<div style="overflow-x:auto;">
+    <table id="stats-table">
+        <thead id="stats-headers">
+            <tr>
+                <th class="stats-header">Type</th>
+                <th class="stats-header">Name</th>
+                <th class="stats-header"># requests</th>
+                <th class="stats-header"># fails</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>/</td>
+                <td>20</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/</td>
+                <td>50</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+</body>
+<footer>
+    <h1 style="color: yellow; font-style: oblique">YellowJacket</h1>
+</footer>
+
+</html>
