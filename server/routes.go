@@ -26,6 +26,12 @@ var routes = Routes{
 		"/api/v1/attack",
 		AttackHandler,
 	},
+	Route{
+		"Home",
+		"GET",
+		"/",
+		MainHandler,
+	},
 	// Route{
 	// 	"TableDescribe",
 	// 	"GET",
