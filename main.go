@@ -11,5 +11,8 @@ import (
 func main() {
 	rt := server.NewRouter()
 	handler := cors.Default().Handler(rt)
+	fs := http.FileServer(http.Dir("templates/"))
+	rt.PathPrefix("/templates/").Handler(http.StripPrefix("/templates/", fs))
+	// http.Handle("/", rt)
 	log.Fatal(http.ListenAndServe(":8001", handler))
 }
