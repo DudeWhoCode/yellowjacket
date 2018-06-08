@@ -3,6 +3,8 @@ package server
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
 
 	"github.com/DudeWhoCode/yellowjacket/backend"
@@ -36,4 +38,21 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	go backend.CreateSwarm(swarmRate, wasps, pipe)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+}
+
+func MainHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	// Read in the template with our SSE JavaScript code.
+	t, err := template.ParseFiles("templates/index.html")
+	if err != nil {
+		log.Fatal("WTF dude, error parsing your template.")
+
+	}
+
+	// Render the template, writing to `w`.
+	t.Execute(w, "something")
 }
