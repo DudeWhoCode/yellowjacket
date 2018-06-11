@@ -31,5 +31,6 @@ function attack() {
     payload.swarms = Number(hatchRate);
     let data = JSON.stringify(payload);
     fetch('http://localhost:8001/api/v1/attack', {method: 'POST', body:data});
+    toggle_box()
 }
 
