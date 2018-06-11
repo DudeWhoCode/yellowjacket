@@ -6,17 +6,16 @@ import (
 	"time"
 )
 
-func CreateSwarm(swarmRate int, wasps int, pipe chan struct {
-	ResponseHeader *http.Response
-	ResponseTime   string
-}) {
+var Agg AggrResponse
+
+func CreateSwarm(swarmRate int, wasps int, pipe chan RawResponse) {
 	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", wasps, swarmRate)
 	remainingWasps := wasps
 	for i := 0; i < wasps; i++ {
 		// fmt.Println("Wasping")
 		for j := 0; j < swarmRate; j++ {
 			// println("Spawning...")
-			go Attack("http://www.google.com", pipe)
+			go StartAttack("http://www.google.com", pipe)
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
@@ -27,10 +26,7 @@ func CreateSwarm(swarmRate int, wasps int, pipe chan struct {
 	}
 }
 
-func Attack(url string, pipe chan struct {
-	ResponseHeader *http.Response
-	ResponseTime   string
-}) {
+func StartAttack(url string, pipe chan RawResponse) {
 
 	for {
 		start := time.Now()
