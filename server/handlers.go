@@ -21,7 +21,7 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 
 func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Inside attack handler")
-	var a attack
+	var a backend.Attack
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&a); err != nil {
 		w.WriteHeader(http.StatusNotAcceptable)
@@ -33,7 +33,7 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	swarmRate := a.Swarms //strconv.Atoi(r.FormValue("toggle_box"))
 	wasps := a.Wasps
 	fmt.Println("wasp count: ", wasps, swarmRate)
-	pipe := backend.Initialize()
+	pipe := backend.InitializeCollect()
 	go backend.CollectLogs(pipe)
 	go backend.CreateSwarm(swarmRate, wasps, pipe)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
