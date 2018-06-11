@@ -10,11 +10,6 @@ import (
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
-type attack struct {
-	Swarms int `json:"swarms"`
-	Wasps  int `json:"wasps"`
-}
-
 func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "pong")
 }
