@@ -46,13 +46,17 @@ func StartAttack(url string, pipe chan RawResponse) {
 	}
 }
 
-func CollectLogs(pipe chan struct {
-	ResponseHeader *http.Response
-	ResponseTime   string
-}) {
+func CollectLogs(pipe chan RawResponse) {
 	fmt.Println("Listening for logs")
 	for resp := range pipe {
-		fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
+		if resp.ResponseHeader.StatusCode == 200 {
+			fmt.Println("INTO IF CONDITION >>>>>>")
+			Agg.SumReq++
+		} else {
+			Agg.SumFails++
+		}
+		fmt.Println(Agg)
+		// fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
 	}
 	fmt.Println("Exiting the collectLogs ::::::::::::")
 }
