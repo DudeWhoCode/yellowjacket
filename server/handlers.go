@@ -54,5 +54,5 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Render the template, writing to `w`.
-	t.Execute(w, "something")
+	t.Execute(w, "YellowJacket")
 }
