@@ -15,7 +15,7 @@ func CreateSwarm(swarmRate int, wasps int, pipe chan RawResponse) {
 		// fmt.Println("Wasping")
 		for j := 0; j < swarmRate; j++ {
 			// println("Spawning...")
-			go StartAttack("http://www.google.com", pipe)
+			go StartAttack("https://battlelog.battlefield.com/bf4/servers/", pipe)
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
@@ -32,6 +32,7 @@ func StartAttack(url string, pipe chan RawResponse) {
 		start := time.Now()
 		response, _ := http.Get(url)
 		elapsed := time.Since(start)
+		time.Sleep(time.Second)
 		responseStruct := struct {
 			ResponseHeader *http.Response
 			ResponseTime   string
