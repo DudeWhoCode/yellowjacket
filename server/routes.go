@@ -8,6 +8,7 @@ import (
 
 var b = backend.GetBroker()
 
+// Route struct is used to create all routes the webserver uses
 type Route struct {
 	Name        string
 	Method      string
@@ -15,6 +16,7 @@ type Route struct {
 	HandlerFunc http.HandlerFunc
 }
 
+// Routes is a collection of individial route/url
 type Routes []Route
 
 var routes = Routes{
