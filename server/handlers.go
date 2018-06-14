@@ -10,10 +10,12 @@ import (
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
+// Ping returns the availability of the webserver
 func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "pong")
 }
 
+// AttackHandler is used to kick off the load test
 func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Inside attack handler")
 	var a backend.Attack
@@ -35,6 +37,7 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// MainHandler serves the home page of the app
 func MainHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
