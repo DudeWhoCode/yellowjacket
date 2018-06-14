@@ -2,7 +2,11 @@ package server
 
 import (
 	"net/http"
+
+	"github.com/DudeWhoCode/yellowjacket/backend"
 )
+
+var b = backend.GetBroker()
 
 type Route struct {
 	Name        string
@@ -31,6 +35,12 @@ var routes = Routes{
 		"GET",
 		"/",
 		MainHandler,
+	},
+	Route{
+		"Events",
+		"GET",
+		"/events",
+		b.ServeHTTP,
 	},
 	// Route{
 	// 	"TableDescribe",
