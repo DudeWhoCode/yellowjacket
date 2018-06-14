@@ -22,9 +22,6 @@ function handle_sse() {
     var source = new EventSource('/events/');
     // Create a callback for when a new message is received.
     source.onmessage = function(e) {
-
-        // Append the `data` attribute of the message to the DOM.
-        // document.body.innerHTML += e.data + '<br>';
         var ip_array = e.data.split(',');
         sumReq = ip_array[0]
         sumFail = ip_array[1]

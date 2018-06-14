@@ -27,7 +27,7 @@ func AttackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 	fmt.Println(a)
-	swarmRate := a.Swarms //strconv.Atoi(r.FormValue("toggle_box"))
+	swarmRate := a.Swarms
 	wasps := a.Wasps
 	fmt.Println("wasp count: ", wasps, swarmRate)
 	pipe := backend.InitializeCollect()

@@ -44,10 +44,4 @@ var routes = Routes{
 		"/events",
 		b.ServeHTTP,
 	},
-	// Route{
-	// 	"TableDescribe",
-	// 	"GET",
-	// 	"/api/v1/describe-table/{schema}/{name}",
-	// 	TableDesc,
-	// },
 }

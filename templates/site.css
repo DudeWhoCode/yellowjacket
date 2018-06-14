@@ -24,8 +24,6 @@ body{
 .btn-stop{
     background:red;
     width:125px;
-    /*padding-top:15px;*/
-    /*padding-bottom:15px;*/
     padding: 15px 5px 15px 5px;
     color:white;
     border-radius:4px;
@@ -47,9 +45,7 @@ body{
     width:250px;
     font-size:1em;
     margin:40px auto auto auto;
-    /*margin-top: 40px;*/
     display: block;
-    /*margin-left: 14px;   // Replace this hack*/
 }
 
 .swarm{
@@ -60,8 +56,6 @@ body{
     width:250px;
     font-size:1em;
     margin:20px auto;
-    /*margin-bottom: 20px;*/
-    /*margin: auto;*/
     display: block;
 }
 
@@ -81,11 +75,9 @@ header {
     margin-bottom: 0px;
     height: 60px;
     background: yellow;
-    /* width: 100%; */
 }
 
 #navbar {
-    /* width: 100%; */
     padding: 20px 20px;
     height: 10px;
     background: #323232;
@@ -112,32 +104,6 @@ header {
     background:#ccc;
 }
 
-/* #stats-table {
-    width: 100%;
-    margin: 50px 0px 0px 0px;
-    border: 2px solid white;
-}
-
-#stats-headers {
-    display:inline-block;
-    width: 100%;
-    color: white;
-    border: 1px solid #414040;
-    padding: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-}
-
-#stats-header {
-    display: inline-block;
-    padding: 0px 10px 0px 10px;
-} */
-
-/* table, th, td {
-    border: 1px solid white;
- } */
-
  th, td {
     height: 30px;
     text-align: left;
@@ -158,12 +124,10 @@ header {
  }
 
  #start-swarm{
-    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* min-height: 100vh; */
     background:white;
     width:300px;
     border-radius:6px;
