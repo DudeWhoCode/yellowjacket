@@ -15,9 +15,8 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "pong")
 }
 
-// StartAttack is used to kick off the load test
-func StartAttack(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Inside attack handler")
+// StartSwarm is used to kick off the load test
+func StartSwarm(w http.ResponseWriter, r *http.Request) {
 	// Decode the post payload
 	var a backend.Swarm
 	decoder := json.NewDecoder(r.Body)
@@ -29,7 +28,6 @@ func StartAttack(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 	hatchRate := a.HatchRate
 	wasps := a.Wasps
-	fmt.Println("wasp count: ", wasps, hatchRate)
 	pipe := backend.GetResponseChan()
 	go backend.CollectLogs(pipe)
 	go backend.CreateSwarm(hatchRate, wasps, pipe)
@@ -44,7 +42,7 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Read in the template with our SSE JavaScript code.
+	// Read in the template with SSE JavaScript code.
 	t, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		log.Fatal("WTF dude, error parsing your template.")
