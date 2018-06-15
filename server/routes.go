@@ -30,7 +30,7 @@ var routes = Routes{
 		"Attack",
 		"POST",
 		"/api/v1/attack",
-		StartAttack,
+		StartSwarm,
 	},
 	Route{
 		"Home",
