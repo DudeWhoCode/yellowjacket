@@ -10,6 +10,10 @@ import (
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
+type Data struct {
+	Host string
+}
+
 // Ping returns the availability of the webserver
 func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "pong")
@@ -46,7 +50,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("Error parsing your template.")
 
 	}
-
+	data := Data{
+		backend.TargetHost,
+	}
 	// Render the template, writing to `w`.
-	t.Execute(w, "YellowJacket")
+	t.Execute(w, data)
 }
