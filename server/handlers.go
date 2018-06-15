@@ -18,7 +18,7 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 // StartSwarm is used to kick off the load test
 func StartSwarm(w http.ResponseWriter, r *http.Request) {
 	// Decode the post payload
-	var a backend.Swarm
+	var a backend.SwarmInput
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&a); err != nil {
 		w.WriteHeader(http.StatusNotAcceptable)
@@ -26,11 +26,9 @@ func StartSwarm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-	hatchRate := a.HatchRate
-	wasps := a.Wasps
-	pipe := backend.GetResponseChan()
-	go backend.CollectLogs(pipe)
-	go backend.CreateSwarm(hatchRate, wasps, pipe)
+	swarm := backend.GetSwarm(a)
+	go swarm.Collect()
+	go swarm.CreateSwarm()
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }

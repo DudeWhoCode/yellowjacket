@@ -11,12 +11,14 @@ var Agg AggrResponse
 // CreateSwarm takes in the waspsCount(users count) and hatchRate(spwan rate) to
 // create a swarm of concurrent users to attack. hatchRate tells how many concurrent
 // users it has to spawn every second.
-func CreateSwarm(hatchRate int, waspsCount int, pipe chan RawResponse) {
+func (s *Swarm) CreateSwarm() {
+	hatchRate := s.Inputs.HatchRate
+	waspsCount := s.Inputs.Wasps
 	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", waspsCount, hatchRate)
 	remainingWasps := waspsCount
 	for i := 0; i < waspsCount; i++ {
 		for j := 0; j < hatchRate; j++ {
-			go StartAttack("https://battlelog.battlefield.com/bf4/servers/", pipe)
+			go s.StartAttack("https://battlelog.battlefield.com/bf4/servers/")
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
@@ -28,7 +30,7 @@ func CreateSwarm(hatchRate int, waspsCount int, pipe chan RawResponse) {
 }
 
 // StartAttack will hit the given url indefinetly until it's stopped by the user
-func StartAttack(url string, pipe chan RawResponse) {
+func (s *Swarm) StartAttack(url string) {
 
 	for {
 		start := time.Now()
@@ -43,16 +45,15 @@ func StartAttack(url string, pipe chan RawResponse) {
 			elapsed.String(),
 		}
 		fmt.Println("Before sending to channel")
-		go CollectLogs(pipe)
-		pipe <- responseStruct
+		s.OutChan <- responseStruct
 		fmt.Println("Sent to channel")
 	}
 }
 
-// CollectLogs listens to a channel to gather ther responses from StartAttack
-func CollectLogs(pipe chan RawResponse) {
+// Collect listens to a channel to gather ther responses from StartAttack
+func (s *Swarm) Collect() {
 	fmt.Println("Listening for logs")
-	for resp := range pipe {
+	for resp := range s.OutChan {
 		if resp.ResponseHeader.StatusCode == 200 {
 			Agg.SumReq++
 		} else {
