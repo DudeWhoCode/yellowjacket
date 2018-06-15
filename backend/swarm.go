@@ -44,9 +44,7 @@ func (s *Swarm) StartAttack(url string) {
 			response,
 			elapsed.String(),
 		}
-		fmt.Println("Before sending to channel")
 		s.OutChan <- responseStruct
-		fmt.Println("Sent to channel")
 	}
 }
 

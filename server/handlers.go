@@ -43,7 +43,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	// Read in the template with SSE JavaScript code.
 	t, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		log.Fatal("WTF dude, error parsing your template.")
+		log.Fatal("Error parsing your template.")
 
 	}
 
