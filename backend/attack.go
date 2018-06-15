@@ -27,6 +27,7 @@ func CreateSwarm(hatchRate int, waspsCount int, pipe chan RawResponse) {
 	}
 }
 
+// StartAttack will hit the given url indefinetly until it's stopped by the user
 func StartAttack(url string, pipe chan RawResponse) {
 
 	for {
@@ -48,6 +49,7 @@ func StartAttack(url string, pipe chan RawResponse) {
 	}
 }
 
+// CollectLogs listens to a channel to gather ther responses from StartAttack
 func CollectLogs(pipe chan RawResponse) {
 	fmt.Println("Listening for logs")
 	for resp := range pipe {
