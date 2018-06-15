@@ -18,7 +18,7 @@ func (s *Swarm) CreateSwarm() {
 	remainingWasps := waspsCount
 	for i := 0; i < waspsCount; i++ {
 		for j := 0; j < hatchRate; j++ {
-			go s.StartAttack("https://battlelog.battlefield.com/bf4/servers/")
+			go s.StartAttack(TargetHost)
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
