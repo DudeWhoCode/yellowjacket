@@ -44,7 +44,7 @@ function attack() {
     var hatchRate = document.getElementsByClassName('swarm')[0].value;
     var payload = {};
     payload.wasps = Number(waspsCount);
-    payload.swarms = Number(hatchRate);
+    payload.hatch_rate = Number(hatchRate);
     let data = JSON.stringify(payload);
     fetch('http://localhost:8001/api/v1/attack', {method: 'POST', body:data});
     toggle_box()

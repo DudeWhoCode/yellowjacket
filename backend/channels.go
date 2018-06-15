@@ -3,7 +3,7 @@ package backend
 import "net/http"
 
 type Swarm struct {
-	HatchRate int `json:"swarms"`
+	HatchRate int `json:"hatch_rate"`
 	Wasps     int `json:"wasps"`
 }
 
