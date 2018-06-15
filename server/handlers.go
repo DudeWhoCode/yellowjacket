@@ -27,13 +27,12 @@ func StartAttack(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-	fmt.Println(a)
-	swarmRate := a.Swarms
+	hatchRate := a.Swarms
 	wasps := a.Wasps
-	fmt.Println("wasp count: ", wasps, swarmRate)
-	pipe := backend.InitializeCollect()
+	fmt.Println("wasp count: ", wasps, hatchRate)
+	pipe := backend.GetResponseChan()
 	go backend.CollectLogs(pipe)
-	go backend.CreateSwarm(swarmRate, wasps, pipe)
+	go backend.CreateSwarm(hatchRate, wasps, pipe)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
