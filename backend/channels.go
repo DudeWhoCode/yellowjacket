@@ -17,14 +17,8 @@ type RawResponse struct {
 }
 
 var ResponseChan RawResponse
-var AggrResponseChan RawResponse
 
-func InitializeCollect() (ResponseChan chan RawResponse) {
+func GetResponseChan() (ResponseChan chan RawResponse) {
 	ResponseChan = make(chan RawResponse)
 	return ResponseChan
-}
-
-func InitializeAggregate() (AggrResponseChan chan RawResponse) {
-	AggrResponseChan = make(chan RawResponse)
-	return AggrResponseChan
 }
