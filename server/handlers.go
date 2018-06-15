@@ -15,9 +15,10 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "pong")
 }
 
-// AttackHandler is used to kick off the load test
-func AttackHandler(w http.ResponseWriter, r *http.Request) {
+// StartAttack is used to kick off the load test
+func StartAttack(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Inside attack handler")
+	// Decode the post payload
 	var a backend.Attack
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&a); err != nil {
