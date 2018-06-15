@@ -1,10 +1,18 @@
-hash: 92340a8ca2a70b9b53cfcb59ad708227a7c4e29cbf107310ca2ee7092b649c30
-updated: 2018-05-20T10:08:10.172444+05:30
+hash: 96676cfd49549ccd007e7e0562cde7edc066a0f3c45961734abbaf5660af6f65
+updated: 2018-06-15T19:33:45.276908+05:30
 imports:
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
-- name: github.com/gorilla/handlers
-  version: 13a38d26174b16d5b4bf6f1094c1389ec9879572
 - name: github.com/gorilla/mux
   version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/inconshreveable/mousetrap
+  version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
+- name: github.com/rs/cors
+  version: 694cf2ad010fcf91ee35161f5bfdad8f42ed1b9a
+- name: github.com/spf13/cobra
+  version: 1e58aa3361fd650121dceeedc399e7189c05674a
+- name: github.com/spf13/cobra.git
+  version: ef82de70bb3f60c65fb8eebacbb2d122ef517385
+- name: github.com/spf13/pflag
+  version: 3ebe029320b2676d667ae88da602a5f854788a8a
 testImports: []
