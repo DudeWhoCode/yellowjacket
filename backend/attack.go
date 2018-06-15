@@ -53,15 +53,12 @@ func StartAttack(url string, pipe chan RawResponse) {
 func CollectLogs(pipe chan RawResponse) {
 	fmt.Println("Listening for logs")
 	for resp := range pipe {
-		fmt.Println("STATUS CODE: :::: :: ", resp.ResponseHeader.StatusCode)
 		if resp.ResponseHeader.StatusCode == 200 {
 			Agg.SumReq++
 		} else {
 			Agg.SumFails++
 		}
 		b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, resp.ResponseTime)
-		fmt.Println("Sent to SSE")
 		// fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
 	}
-	fmt.Println("Exiting the collectLogs ::::::::::::")
 }
