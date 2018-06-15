@@ -36,7 +36,7 @@ var routes = Routes{
 		"Home",
 		"GET",
 		"/",
-		MainHandler,
+		Home,
 	},
 	Route{
 		"Events",

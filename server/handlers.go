@@ -35,8 +35,8 @@ func StartSwarm(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-// MainHandler serves the home page of the app
-func MainHandler(w http.ResponseWriter, r *http.Request) {
+// Home serves the home page of the app
+func Home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
 		return
