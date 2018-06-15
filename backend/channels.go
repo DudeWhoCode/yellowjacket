@@ -2,13 +2,14 @@ package backend
 
 import "net/http"
 
+type Swarm struct {
+	HatchRate int `json:"swarms"`
+	Wasps     int `json:"wasps"`
+}
+
 type AggrResponse struct {
 	SumReq   int
 	SumFails int
-}
-type Attack struct {
-	Swarms int `json:"swarms"`
-	Wasps  int `json:"wasps"`
 }
 
 type RawResponse struct {

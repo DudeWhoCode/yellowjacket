@@ -19,7 +19,7 @@ func Ping(w http.ResponseWriter, r *http.Request) {
 func StartAttack(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Inside attack handler")
 	// Decode the post payload
-	var a backend.Attack
+	var a backend.Swarm
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&a); err != nil {
 		w.WriteHeader(http.StatusNotAcceptable)
@@ -27,7 +27,7 @@ func StartAttack(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-	hatchRate := a.Swarms
+	hatchRate := a.HatchRate
 	wasps := a.Wasps
 	fmt.Println("wasp count: ", wasps, hatchRate)
 	pipe := backend.GetResponseChan()

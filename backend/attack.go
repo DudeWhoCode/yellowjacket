@@ -8,18 +8,19 @@ import (
 
 var Agg AggrResponse
 
-func CreateSwarm(swarmRate int, wasps int, pipe chan RawResponse) {
-	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", wasps, swarmRate)
-	remainingWasps := wasps
-	for i := 0; i < wasps; i++ {
-		// fmt.Println("Wasping")
-		for j := 0; j < swarmRate; j++ {
-			// println("Spawning...")
+// CreateSwarm takes in the waspsCount(users count) and hatchRate(spwan rate) to
+// create a swarm of concurrent users to attack. hatchRate tells how many concurrent
+// users it has to spawn every second.
+func CreateSwarm(hatchRate int, waspsCount int, pipe chan RawResponse) {
+	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", waspsCount, hatchRate)
+	remainingWasps := waspsCount
+	for i := 0; i < waspsCount; i++ {
+		for j := 0; j < hatchRate; j++ {
 			go StartAttack("https://battlelog.battlefield.com/bf4/servers/", pipe)
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
-			fmt.Printf("Created %d wasps \n", wasps)
+			fmt.Printf("Created %d wasps \n", waspsCount)
 			break
 		}
 		time.Sleep(time.Second)
