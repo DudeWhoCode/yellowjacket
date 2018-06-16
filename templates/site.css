@@ -74,14 +74,26 @@ header {
     margin-top: 0;
     margin-bottom: 0px;
     height: 60px;
-    background: yellow;
+    background: #ffff66;
 }
 
-#navbar {
-    padding: 20px 20px;
-    height: 10px;
+.navbar {
+    overflow: hidden;
     background: #323232;
 }
+
+.navbar a {
+    float: left;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 10px 15px 10px 15px;
+}
+
+.navbar a:hover {background-color: #5c5c5c;;}
+
+.navbar a:focus {background-color: #494949;}
 
 #new-test {
     padding: 15px 80px 15px 5px;
@@ -136,7 +148,7 @@ header {
     border: #363636 2px solid;
  }
 
- #start-swarm{
+ #start-swarm {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -149,4 +161,30 @@ header {
     border: #2980b9 4px solid;
     position: absolute;
     display: none; 
+}
+
+.charts-console {
+    display: none;
+}
+
+.stats-console {
+    display: block;
+}
+
+.failures-console {
+    display: none;
+}
+
+.exceptions-console {
+    display: none;
+}
+
+.downloads-console {
+    display: none;
+    text-align: center;
+    padding: 50px 50px;
+}
+
+.downloads-console a {
+    color: white;
 }

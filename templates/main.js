@@ -17,6 +17,48 @@ function toggle_box() {
 
 }
 
+function show_charts() {
+    charts.style.display = 'block';
+    stats.style.display = 'none'
+    failures.style.display = 'none';
+    exceptions.style.display = 'none';
+    downloads.style.display = 'none';
+}
+
+function show_stats() {
+    stats.style.display = 'block'
+    charts.style.display = 'none';
+    failures.style.display = 'none';
+    exceptions.style.display = 'none';
+    downloads.style.display = 'none';
+    
+}
+
+function show_failures() {
+    failures.style.display = 'block';
+    stats.style.display = 'none';
+    charts.style.display = 'none';
+    exceptions.style.display = 'none';
+    downloads.style.display = 'none';
+}
+
+function show_exceptions() {
+    exceptions.style.display = 'block';
+    failures.style.display = 'none';
+    stats.style.display = 'none';
+    charts.style.display = 'none';
+    downloads.style.display = 'none';
+}
+
+function show_downloads() {
+    downloads.style.display = 'block';
+    exceptions.style.display = 'none';
+    failures.style.display = 'none';
+    stats.style.display = 'none';
+    charts.style.display = 'none';
+}
+
+
 function handle_sse() {
     // Create a new HTML5 EventSource
     var source = new EventSource('/events/');
@@ -36,6 +78,11 @@ function handle_sse() {
 window.onload = function () {
    start_swarm = document.getElementById("start-swarm");
    swarm_button = document.getElementById('new-test');
+   charts = document.getElementsByClassName('charts-console')[0]
+   stats = document.getElementsByClassName('stats-console')[0]
+   failures = document.getElementsByClassName('failures-console')[0]
+   exceptions = document.getElementsByClassName('exceptions-console')[0]
+   downloads = document.getElementsByClassName('downloads-console')[0]
    handle_sse()
 };
 

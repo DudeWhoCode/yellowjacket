@@ -23,11 +23,15 @@
 
 </div>
 
-<div id="navbar">
-    
-</div>
+<nav class="navbar">
+    <a href="#" class="stat" onclick="show_stats()">Stats</a>
+    <a href="#" class="chart" onclick="show_charts()">Charts</a>
+    <a href="#" class="failure" onclick="show_failures()">Failures</a>
+    <a href="#" class="exception" onclick="show_exceptions()">Exceptions</a>
+    <a href="#" class="download" onclick="show_downloads()">Downloads</a>
+</nav>
 
-<div style="overflow-x:auto;">
+<div class="stats-console" style="overflow-x:auto;">
     <table id="stats-table">
         <thead id="stats-headers">
             <tr>
@@ -48,9 +52,54 @@
             </tr>
         </tbody>
     </table>
-
 </div>
 
+<div class="charts-console">
+    <div><img src="templates/chart.png" alt="chart"></div>
+</div>
+
+<div class="failures-console">
+        <table id="failures-table">
+            <thead id="failures-headers">
+                <tr>
+                    <th class="failures-header"># Fails</th>
+                    <th class="failures-header">Method</th>
+                    <th class="failures-header">Name</th>
+                    <th class="failures-header">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>/</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<div class="exceptions-console">
+        <table id="exceptions-table">
+            <thead id="exceptions-headers">
+                <tr>
+                    <th class="exceptions-header"># Occurances</th>
+                    <th class="exceptions-header">Traceback</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<div class="downloads-console">
+        <a href="#">Download as CSV</a>
+    </div>
+    
 
 </body>
 <footer>
