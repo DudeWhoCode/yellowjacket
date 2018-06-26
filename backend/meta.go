@@ -12,8 +12,8 @@ type Task struct {
 }
 
 type WebUser interface {
-	Foo()
-	Bar()
+	Foo() (*http.Response, error)
+	Bar() (*http.Response, error)
 }
 
 func LoadModule() {
@@ -36,6 +36,9 @@ func LoadModule() {
 		fmt.Println("unexpected type from module symbol")
 		os.Exit(1)
 	}
-	user.Foo()
-	user.Bar()
+	fmt.Println("Before user.foo()")
+	resFoo, _ := user.Foo()
+	resBar, _ := user.Bar()
+	fmt.Println("Results are : ", resFoo, resBar)
+
 }
