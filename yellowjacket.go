@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/DudeWhoCode/yellowjacket/cmd"
+	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
 func main() {
-	cmd.Execute()
+	backend.LoadModule()
+	// cmd.Execute()
 }
