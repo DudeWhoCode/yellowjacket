@@ -2,20 +2,21 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
 type task backend.Task
 
-func (u *task) Foo() {
+func (u *task) Foo() (*http.Response, error) {
 	fmt.Println("Inside foo")
-	u.Client.Get("http://google.com")
+	return u.Client.Get("http://google.com")
 }
 
-func (u *task) Bar() {
+func (u *task) Bar() (*http.Response, error) {
 	fmt.Println("Inside bar")
-	u.Client.Get("http://google.com")
+	return u.Client.Get("http://google.com")
 }
 
 var User task
