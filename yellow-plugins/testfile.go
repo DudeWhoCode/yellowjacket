@@ -7,7 +7,7 @@ import (
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
-type Task backend.Task
+type Task backend.User
 
 func (u *Task) Foo() (*http.Response, error) {
 	fmt.Println("Inside foo")
