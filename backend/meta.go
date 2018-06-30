@@ -5,15 +5,11 @@ import (
 	"net/http"
 	"os"
 	"plugin"
+	"reflect"
 )
 
 type Task struct {
 	Client http.Client
-}
-
-type WebUser interface {
-	Foo() (*http.Response, error)
-	Bar() (*http.Response, error)
 }
 
 func LoadModule() {
@@ -26,19 +22,19 @@ func LoadModule() {
 
 	custUser, err := plug.Lookup("User")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Lookup error: ", err)
 		os.Exit(1)
 	}
-
-	var user WebUser
-	user, ok := custUser.(WebUser)
-	if !ok {
-		fmt.Println("unexpected type from module symbol")
-		os.Exit(1)
+	fooType := reflect.TypeOf(custUser)
+	fooVal := reflect.ValueOf(custUser)
+	var methods []string
+	for i := 0; i < fooType.NumMethod(); i++ {
+		method := fooType.Method(i)
+		methods = append(methods, method.Name)
 	}
-	fmt.Println("Before user.foo()")
-	resFoo, _ := user.Foo()
-	resBar, _ := user.Bar()
-	fmt.Println("Results are : ", resFoo, resBar)
-
+	for _, m := range methods {
+		res := fooVal.MethodByName(m).Call([]reflect.Value{})
+		response := res[0].Interface().(*http.Response)
+		fmt.Println(response.StatusCode)
+	}
 }
