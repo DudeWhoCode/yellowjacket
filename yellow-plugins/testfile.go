@@ -7,16 +7,20 @@ import (
 	"github.com/DudeWhoCode/yellowjacket/backend"
 )
 
-type task backend.Task
+type Task backend.Task
 
-func (u *task) Foo() (*http.Response, error) {
+func (u *Task) Foo() (*http.Response, error) {
 	fmt.Println("Inside foo")
 	return u.Client.Get("http://google.com")
 }
 
-func (u *task) Bar() (*http.Response, error) {
+func (u *Task) Bar() (*http.Response, error) {
 	fmt.Println("Inside bar")
 	return u.Client.Get("http://google.com")
 }
 
-var User task
+func GetTask() *Task {
+	return &Task{}
+}
+
+var User Task
