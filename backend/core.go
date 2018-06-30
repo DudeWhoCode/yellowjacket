@@ -8,8 +8,12 @@ import (
 	"reflect"
 )
 
-type Task struct {
+type User struct {
 	Client http.Client
+}
+
+func (u *User) GetMethods() {
+	fmt.Println("Into Get methods")
 }
 
 func LoadModule() {
