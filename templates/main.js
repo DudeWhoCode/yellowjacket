@@ -93,7 +93,7 @@ function attack() {
     payload.wasps = Number(waspsCount);
     payload.hatch_rate = Number(hatchRate);
     let data = JSON.stringify(payload);
-    fetch('http://0.0.0.0:8000/api/v1/attack', {method: 'POST', body:data});
+    fetch('http://139.59.59.106:8000/api/v1/attack', {method: 'POST', body:data});
     toggle_box()
 }
 
