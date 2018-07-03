@@ -8,12 +8,62 @@ import (
 	"reflect"
 )
 
+type Swarm struct {
+	Inputs  SwarmInput
+	OutChan chan RawResponse
+	Wasp    *UserBehaviour
+	NumReq  int
+	NumFail int
+}
+
 type User struct {
 	Client http.Client
 }
 
-func (u *User) GetMethods() {
-	fmt.Println("Into Get methods")
+type UserBehaviour struct {
+	Behaviour plugin.Symbol
+	Tasks     []string
+}
+
+var s *Swarm
+
+func GetSwarm(input SwarmInput) (s *Swarm) {
+	if s == nil {
+		s = &Swarm{
+			input,
+			make(chan RawResponse),
+			&UserBehaviour{
+				nil,
+				nil,
+			},
+			0,
+			0,
+		}
+	}
+	return
+}
+
+var Wasp *UserBehaviour
+
+func (u *UserBehaviour) GetMethods() (methods []string) {
+	fooType := reflect.TypeOf(u.Behaviour)
+	for i := 0; i < fooType.NumMethod(); i++ {
+		method := fooType.Method(i)
+		methods = append(methods, method.Name)
+	}
+	u.Tasks = methods
+	return
+}
+
+func (u *UserBehaviour) Execute() {
+	fooVal := reflect.ValueOf(u.Behaviour)
+	for _, m := range u.Tasks {
+		res := fooVal.MethodByName(m).Call([]reflect.Value{})
+		response := res[0].Interface().(*http.Response)
+		url := response.Request.URL
+		statusCode := response.StatusCode
+		fmt.Println(url, statusCode)
+	}
 }
 
 func LoadModule() {
@@ -23,22 +73,15 @@ func LoadModule() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-
 	custUser, err := plug.Lookup("User")
 	if err != nil {
 		fmt.Println("Lookup error: ", err)
 		os.Exit(1)
 	}
-	fooType := reflect.TypeOf(custUser)
-	fooVal := reflect.ValueOf(custUser)
-	var methods []string
-	for i := 0; i < fooType.NumMethod(); i++ {
-		method := fooType.Method(i)
-		methods = append(methods, method.Name)
+	Wasp = &UserBehaviour{
+		custUser,
+		nil,
 	}
-	for _, m := range methods {
-		res := fooVal.MethodByName(m).Call([]reflect.Value{})
-		response := res[0].Interface().(*http.Response)
-		fmt.Println(response.StatusCode)
-	}
+	fmt.Println(Wasp.GetMethods())
+	Wasp.Execute()
 }
