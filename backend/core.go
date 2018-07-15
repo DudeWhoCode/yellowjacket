@@ -28,7 +28,11 @@ type UserBehaviour struct {
 	Tasks     []string
 }
 
-var s *Swarm
+func (s *swarm) WebInputs(waspCnt, hatchRte int) *swarm {
+	s.WaspCount = waspCnt
+	s.HatchRate = hatchRte
+	return s
+}
 
 func GetSwarm(input SwarmInput) (s *Swarm) {
 	if s == nil {
@@ -44,9 +48,22 @@ func GetSwarm(input SwarmInput) (s *Swarm) {
 		}
 	}
 	return
+func (s *swarm) FileInputs(input *UserBehaviour) *swarm {
+	s.Wasp = input
+	return s
 }
 
-var Wasp *UserBehaviour
+func (s *swarm) SetChan(outputChan chan RawResponse) *swarm {
+	s.OutChan = outputChan
+	return s
+}
+
+func (s *swarm) UpdateStatus(numReq, numFail int) *swarm {
+	s.NumReq = numReq
+	s.NumFail = numFail
+	return s
+}
+
 
 func (u *UserBehaviour) GetMethods() (methods []string) {
 	fooType := reflect.TypeOf(u.Behaviour)
