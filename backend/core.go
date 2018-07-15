@@ -34,20 +34,6 @@ func (s *swarm) WebInputs(waspCnt, hatchRte int) *swarm {
 	return s
 }
 
-func GetSwarm(input SwarmInput) (s *Swarm) {
-	if s == nil {
-		s = &Swarm{
-			input,
-			make(chan RawResponse),
-			&UserBehaviour{
-				nil,
-				nil,
-			},
-			0,
-			0,
-		}
-	}
-	return
 func (s *swarm) FileInputs(input *UserBehaviour) *swarm {
 	s.Wasp = input
 	return s
@@ -64,6 +50,15 @@ func (s *swarm) UpdateStatus(numReq, numFail int) *swarm {
 	return s
 }
 
+var sw *swarm
+var once sync.Once
+
+func GetSwarm() *swarm {
+	once.Do(func() {
+		sw = &swarm{}
+	})
+	return sw
+}
 
 func (u *UserBehaviour) GetMethods() (methods []string) {
 	fooType := reflect.TypeOf(u.Behaviour)
