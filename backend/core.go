@@ -6,10 +6,13 @@ import (
 	"os"
 	"plugin"
 	"reflect"
+	"sync"
 )
 
-type Swarm struct {
-	Inputs  SwarmInput
+type swarm struct {
+	WaspCount int
+	HatchRate int
+	// Inputs  SwarmInput
 	OutChan chan RawResponse
 	Wasp    *UserBehaviour
 	NumReq  int
