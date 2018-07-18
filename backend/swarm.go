@@ -69,6 +69,6 @@ func (s *swarm) Collect() {
 			Agg.SumFails++
 		}
 		b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, resp.ResponseTime)
-		// fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
+		fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
 	}
 }
