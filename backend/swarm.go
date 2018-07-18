@@ -51,9 +51,7 @@ func (s *swarm) StartAttack(wasp *UserBehaviour) {
 				response,
 				elapsed.String(),
 			}
-			// fmt.Println("Response Struct Created ---- : \n", responseStruct)
 			s.OutChan <- responseStruct
-			fmt.Println("After pushing to channel :::::::::::::::::::::;")
 		}
 		time.Sleep(time.Second)
 	}
