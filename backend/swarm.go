@@ -11,14 +11,17 @@ var Agg AggrResponse
 // CreateSwarm takes in the waspsCount(users count) and hatchRate(spwan rate) to
 // create a swarm of concurrent users to attack. hatchRate tells how many concurrent
 // users it has to spawn every second.
-func (s *Swarm) CreateSwarm() {
-	hatchRate := s.Inputs.HatchRate
-	waspsCount := s.Inputs.Wasps
+func (s *swarm) CreateSwarm() {
+	hatchRate := s.HatchRate
+	waspsCount := s.WaspCount
+	wasp := s.Wasp
+	wasp.GetMethods()
+	fmt.Println("Tasks in hand: ", wasp.Tasks)
 	fmt.Printf("Starting %d wasps at the rate of %d/sec \n", waspsCount, hatchRate)
 	remainingWasps := waspsCount
 	for i := 0; i < waspsCount; i++ {
 		for j := 0; j < hatchRate; j++ {
-			go s.StartAttack(TargetHost)
+			go s.StartAttack(wasp)
 			remainingWasps--
 		}
 		if remainingWasps == 0 {
