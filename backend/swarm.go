@@ -30,26 +30,34 @@ func (s *Swarm) CreateSwarm() {
 }
 
 // StartAttack will hit the given url indefinetly until it's stopped by the user
-func (s *Swarm) StartAttack(url string) {
+func (s *swarm) StartAttack(wasp *UserBehaviour) {
 
 	for {
-		start := time.Now()
-		response, _ := http.Get(url)
-		elapsed := time.Since(start)
-		time.Sleep(time.Second)
-		responseStruct := struct {
-			ResponseHeader *http.Response
-			ResponseTime   string
-		}{
-			response,
-			elapsed.String(),
+		for i, m := range wasp.Tasks {
+			fmt.Println("Counter: ", i)
+			start := time.Now()
+			fmt.Println("Executing one of the task: ", wasp.Tasks)
+			fmt.Println("Executing the task: ", m)
+			response := wasp.ExecuteOne(m)
+			elapsed := time.Since(start)
+			fmt.Println("Elapsed time: ", elapsed)
+			responseStruct := struct {
+				ResponseHeader *http.Response
+				ResponseTime   string
+			}{
+				response,
+				elapsed.String(),
+			}
+			// fmt.Println("Response Struct Created ---- : \n", responseStruct)
+			s.OutChan <- responseStruct
+			fmt.Println("After pushing to channel :::::::::::::::::::::;")
 		}
-		s.OutChan <- responseStruct
+		time.Sleep(time.Second)
 	}
 }
 
 // Collect listens to a channel to gather ther responses from StartAttack
-func (s *Swarm) Collect() {
+func (s *swarm) Collect() {
 	fmt.Println("Listening for logs")
 	for resp := range s.OutChan {
 		if resp.ResponseHeader.StatusCode == 200 {
