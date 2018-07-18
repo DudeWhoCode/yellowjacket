@@ -89,7 +89,6 @@ func (u *UserBehaviour) Execute() {
 }
 
 func LoadModule() {
-	fmt.Println("Into backend.loadModule")
 	mod := "testfile.so"
 	plug, err := plugin.Open(mod)
 	if err != nil {
@@ -107,7 +106,4 @@ func LoadModule() {
 	}
 	s := GetSwarm()
 	s.FileInputs(wasp)
-	fmt.Println("Swarm type in backend.loadModule: ", s)
-	// fmt.Println(Wasp.GetMethods())
-	// Wasp.Execute()
 }
