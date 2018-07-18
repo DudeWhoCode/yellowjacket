@@ -30,10 +30,11 @@ func StartSwarm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer r.Body.Close()
-	swarm := backend.GetSwarm(a)
-	fmt.Println("CREATED THE MAIN SWARM STRUCT: ", swarm)
-	// go swarm.Collect()
-	// go swarm.CreateSwarm()
+	swarm := backend.GetSwarm()
+	swarm.WebInputs(a.Wasps, a.HatchRate)
+	swarm.SetChan(make(chan backend.RawResponse))
+	go swarm.Collect()
+	go swarm.CreateSwarm()
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 }
