@@ -70,6 +70,13 @@ func (u *UserBehaviour) GetMethods() (methods []string) {
 	return
 }
 
+func (u *UserBehaviour) ExecuteOne(methodName string) (response *http.Response) {
+	fooVal := reflect.ValueOf(u.Behaviour)
+	res := fooVal.MethodByName(methodName).Call([]reflect.Value{})
+	response = res[0].Interface().(*http.Response)
+	return
+}
+
 func (u *UserBehaviour) Execute() {
 	fooVal := reflect.ValueOf(u.Behaviour)
 	for _, m := range u.Tasks {
@@ -82,6 +89,7 @@ func (u *UserBehaviour) Execute() {
 }
 
 func LoadModule() {
+	fmt.Println("Into backend.loadModule")
 	mod := "testfile.so"
 	plug, err := plugin.Open(mod)
 	if err != nil {
@@ -93,10 +101,13 @@ func LoadModule() {
 		fmt.Println("Lookup error: ", err)
 		os.Exit(1)
 	}
-	Wasp = &UserBehaviour{
+	wasp := &UserBehaviour{
 		custUser,
 		nil,
 	}
-	fmt.Println(Wasp.GetMethods())
-	Wasp.Execute()
+	s := GetSwarm()
+	s.FileInputs(wasp)
+	fmt.Println("Swarm type in backend.loadModule: ", s)
+	// fmt.Println(Wasp.GetMethods())
+	// Wasp.Execute()
 }
