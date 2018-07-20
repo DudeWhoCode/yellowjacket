@@ -33,6 +33,7 @@ func StartSwarm(w http.ResponseWriter, r *http.Request) {
 	swarm := backend.GetSwarm()
 	swarm.WebInputs(a.Wasps, a.HatchRate)
 	swarm.SetChan(make(chan backend.RawResponse))
+	swarm.StopFlag = false
 	go swarm.Collect()
 	go swarm.CreateSwarm()
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
