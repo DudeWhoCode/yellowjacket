@@ -36,7 +36,13 @@ func (s *swarm) CreateSwarm() {
 func (s *swarm) StartAttack(wasp *UserBehaviour) {
 
 	for {
+		if s.StopFlag == true {
+			break
+		}
 		for i, m := range wasp.Tasks {
+			if s.StopFlag == true {
+				break
+			}
 			fmt.Println("Counter: ", i)
 			start := time.Now()
 			fmt.Println("Executing one of the task: ", wasp.Tasks)
@@ -61,6 +67,12 @@ func (s *swarm) StartAttack(wasp *UserBehaviour) {
 func (s *swarm) Collect() {
 	fmt.Println("Listening for logs")
 	for resp := range s.OutChan {
+		if s.StopFlag == true {
+			Agg.SumReq = 0
+			Agg.SumFails = 0
+			b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, "0.0")
+			continue
+		}
 		if resp.ResponseHeader.StatusCode == 200 {
 			Agg.SumReq++
 		} else {

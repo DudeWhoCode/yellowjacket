@@ -33,6 +33,7 @@ func StartSwarm(w http.ResponseWriter, r *http.Request) {
 	swarm := backend.GetSwarm()
 	swarm.WebInputs(a.Wasps, a.HatchRate)
 	swarm.SetChan(make(chan backend.RawResponse))
+	swarm.StopFlag = false
 	go swarm.Collect()
 	go swarm.CreateSwarm()
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -57,4 +58,13 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	}
 	// Render the template, writing to `w`.
 	t.Execute(w, data)
+}
+
+func StopSwarm(w http.ResponseWriter, r *http.Request) {
+	swarm := backend.GetSwarm()
+	swarm.StopFlag = true
+	swarm.NumReq = 0
+	swarm.NumFail = 0
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
 }
