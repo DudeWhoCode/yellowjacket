@@ -44,4 +44,10 @@ var routes = Routes{
 		"/events",
 		b.ServeHTTP,
 	},
+	Route{
+		"Stop",
+		"POST",
+		"/api/v1/stop",
+		StopSwarm,
+	},
 }
