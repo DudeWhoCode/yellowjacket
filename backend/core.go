@@ -13,10 +13,11 @@ type swarm struct {
 	WaspCount int
 	HatchRate int
 	// Inputs  SwarmInput
-	OutChan chan RawResponse
-	Wasp    *UserBehaviour
-	NumReq  int
-	NumFail int
+	OutChan  chan RawResponse
+	Wasp     *UserBehaviour
+	NumReq   int
+	NumFail  int
+	StopFlag bool
 }
 
 type User struct {
