@@ -97,3 +97,11 @@ function attack() {
     toggle_box()
 }
 
+
+function stop() {
+    window.alert("stop called")
+    var payload = {};
+    let data = JSON.stringify(payload);
+    fetch('http://139.59.59.106:8000/api/v1/stop', {method: 'POST', body:data});
+}
+
