@@ -36,7 +36,13 @@ func (s *swarm) CreateSwarm() {
 func (s *swarm) StartAttack(wasp *UserBehaviour) {
 
 	for {
+		if s.StopFlag == true {
+			break
+		}
 		for i, m := range wasp.Tasks {
+			if s.StopFlag == true {
+				break
+			}
 			fmt.Println("Counter: ", i)
 			start := time.Now()
 			fmt.Println("Executing one of the task: ", wasp.Tasks)
