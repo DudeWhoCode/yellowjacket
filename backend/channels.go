@@ -8,8 +8,9 @@ type SwarmInput struct {
 }
 
 type AggrResponse struct {
-	SumReq   int
-	SumFails int
+	SumReq     int
+	SumFails   int
+	SumLatency float64
 }
 
 type RawResponse struct {
