@@ -15,7 +15,7 @@ type AggrResponse struct {
 
 type RawResponse struct {
 	ResponseHeader *http.Response
-	ResponseTime   string
+	ResponseTime   float64
 }
 
 var ResponseChan RawResponse

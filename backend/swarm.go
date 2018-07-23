@@ -55,7 +55,7 @@ func (s *swarm) StartAttack(wasp *UserBehaviour) {
 				ResponseTime   string
 			}{
 				response,
-				elapsed.String(),
+				elapsed.Seconds(),
 			}
 			s.OutChan <- responseStruct
 		}
