@@ -73,11 +73,13 @@ func (s *swarm) Collect() {
 			b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, "0.0")
 			continue
 		}
+		Agg.SumLatency += resp.ResponseTime
 		if resp.ResponseHeader.StatusCode == 200 {
 			Agg.SumReq++
 		} else {
 			Agg.SumFails++
 		}
+		avgLatency := Agg.SumLatency / float64(Agg.SumReq+Agg.SumFails)
 		b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, resp.ResponseTime)
 		fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
 	}
