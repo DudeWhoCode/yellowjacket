@@ -52,7 +52,7 @@ func (s *swarm) StartAttack(wasp *UserBehaviour) {
 			fmt.Println("Elapsed time: ", elapsed)
 			responseStruct := struct {
 				ResponseHeader *http.Response
-				ResponseTime   string
+				ResponseTime   float64
 			}{
 				response,
 				elapsed.Seconds(),
