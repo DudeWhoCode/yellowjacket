@@ -80,7 +80,7 @@ func (s *swarm) Collect() {
 			Agg.SumFails++
 		}
 		avgLatency := Agg.SumLatency / float64(Agg.SumReq+Agg.SumFails)
-		b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, resp.ResponseTime)
+		b.Messages <- fmt.Sprintf("%d, %d, %f", Agg.SumReq, Agg.SumFails, avgLatency)
 		fmt.Println(resp.ResponseHeader.StatusCode, " took ", resp.ResponseTime)
 	}
 }
