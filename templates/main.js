@@ -1,5 +1,6 @@
 var start_swarm;
 var swarm_button;
+var item_ids =[];
 
 function close_btn() {
     console.log('close call');
@@ -65,13 +66,54 @@ function handle_sse() {
     // Create a callback for when a new message is received.
     source.onmessage = function(e) {
         var ip_array = e.data.split(',');
-        sumReq = ip_array[0]
-        sumFail = ip_array[1]
-        avgLatency = ip_array[2]
+        method = ip_array[0]
+        urlPath = ip_array[1]
+        sumReq = ip_array[2]
+        sumFail = ip_array[3]
+        avgLatency = ip_array[4]
         console.log(e)
-        document.getElementById("sum-success").innerHTML = sumReq
-        document.getElementById("sum-fail").innerHTML = sumFail
-        document.getElementById("avg-latency").innerHTML = avgLatency
+        var stats_table = document.querySelector("#stats-body");
+        item_id = urlPath.split("/").join("").trim()
+        if (item_id.length == 0) {
+            item_id = "root"
+        }
+        console.log("Got item id: ", item_id)
+        exists = stats_table.querySelector("#" + item_id)
+        if (typeof(exists) != 'undefined' && exists != null) {
+            var tr = exists  
+            tds = tr.children
+            tds[0].firstChild.nodeValue = method
+            tds[1].firstChild.nodeValue = urlPath
+            tds[3].firstChild.nodeValue = sumFail
+            tds[4].firstChild.nodeValue = avgLatency
+            tds[2].firstChild.nodeValue = sumReq
+        }
+        else {
+            var tr = document.createElement("tr");
+            tr.setAttribute("id", item_id)    
+            console.log("new row, tr: ", tr)
+            var td_type = document.createElement("td");
+            var td_name = document.createElement("td");
+            var td_req = document.createElement("td");
+            var td_fail = document.createElement("td");
+            var td_avg_latency = document.createElement("td");
+            var typeCol = document.createTextNode(method);
+            var nameCol = document.createTextNode(urlPath);
+            var sumReqCol = document.createTextNode(sumReq);
+            var sumFailCol = document.createTextNode(sumFail);
+            var avgLatencyCol = document.createTextNode(avgLatency);
+            td_type.appendChild(typeCol)
+            td_name.appendChild(nameCol)
+            td_req.appendChild(sumReqCol)
+            td_fail.appendChild(sumFailCol)
+            td_avg_latency.appendChild(avgLatencyCol)
+            tr.appendChild(td_type)
+            tr.appendChild(td_name)
+            tr.appendChild(td_req)
+            tr.appendChild(td_fail)
+            tr.appendChild(td_avg_latency)
+            stats_table.appendChild(tr)
+        }
     };
 }
 
