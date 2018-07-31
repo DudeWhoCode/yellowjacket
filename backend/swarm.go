@@ -67,10 +67,12 @@ func (s *swarm) StartAttack(wasp *UserBehaviour) {
 func (s *swarm) Collect() {
 	fmt.Println("Listening for logs")
 	for resp := range s.OutChan {
+		path := resp.ResponseHeader.Request.URL.Path
+		method := resp.ResponseHeader.Request.Method
 		if s.StopFlag == true {
 			Agg.SumReq = 0
 			Agg.SumFails = 0
-			b.Messages <- fmt.Sprintf("%d, %d, %s", Agg.SumReq, Agg.SumFails, "0.0")
+			b.Messages <- fmt.Sprintf("%s, %s %d, %d, %s", method, path, Agg.SumReq, Agg.SumFails, "0.0")
 			continue
 		}
 		Agg.SumLatency += resp.ResponseTime
