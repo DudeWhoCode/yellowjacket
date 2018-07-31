@@ -146,6 +146,7 @@ header {
     width: 1200px;
     margin: 50px 50px 50px 50px;
     border: #363636 2px solid;
+    table-layout: fixed;
  }
 
  #start-swarm {
